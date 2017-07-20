@@ -541,7 +541,7 @@ def rank_hand_Int(cards):
         if ranks.find('A') > -1 and ranks.find('5432') > -1 and rank == 123:
             rank = 293
         if rank == 123:
-            rank += rank_kickers(''.join(ranks_flush), 5)
+            rank += rank_kickers(ranks, 5)
             card_type = 'Flush'
         else:
             card_type = 'Straight Flush'
@@ -857,4 +857,4 @@ def win(hands_arr=[], board=[], dead=[]):
             count[index] += 1
         print(count)
 
-win([['AC','AS'],['TC','TS']],['5C','4C','3C','2C','4S'])
+win([['AH','AC'],['QH','QS']],['TS','4H','7C','9D','KD'])
