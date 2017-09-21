@@ -548,25 +548,31 @@ def rank_hand_Int(cards):
 
     # Straight
     if rank == 0:
-        if ranks.find('AKQJT') > -1 and rank == 0:
+        ranks_diff = ''
+        same_rank = ''
+        for value in ranks:
+            if value != same_rank:
+                ranks_diff += value
+                same_rank = value
+        if ranks_diff.find('AKQJT') > -1 and rank == 0:
             rank = 122
-        if ranks.find('KQJT9') > -1 and rank == 0:
+        if ranks_diff.find('KQJT9') > -1 and rank == 0:
             rank = 121
-        if ranks.find('QJT98') > -1 and rank == 0:
+        if ranks_diff.find('QJT98') > -1 and rank == 0:
             rank = 120
-        if ranks.find('JT987') > -1 and rank == 0:
+        if ranks_diff.find('JT987') > -1 and rank == 0:
             rank = 119
-        if ranks.find('T9876') > -1 and rank == 0:
+        if ranks_diff.find('T9876') > -1 and rank == 0:
             rank = 118
-        if ranks.find('98765') > -1 and rank == 0:
+        if ranks_diff.find('98765') > -1 and rank == 0:
             rank = 117
-        if ranks.find('87654') > -1 and rank == 0:
+        if ranks_diff.find('87654') > -1 and rank == 0:
             rank = 116
-        if ranks.find('76543') > -1 and rank == 0:
+        if ranks_diff.find('76543') > -1 and rank == 0:
             rank = 115
-        if ranks.find('65432') > -1 and rank == 0:
+        if ranks_diff.find('65432') > -1 and rank == 0:
             rank = 114
-        if ranks.find('A') > -1 and ranks.find('5432') > -1 and rank == 0:
+        if ranks_diff.find('A') > -1 and ranks_diff.find('5432') > -1 and rank == 0:
             rank = 113
         if rank != 0:
             card_type = 'Straight'
@@ -849,6 +855,7 @@ def win(hands_arr=[], board=[], dead=[]):
         for hands in hands_arr:
             hole_board_cards = hands + board
             seven_cards = rank_hand_Int(hole_board_cards)
+            print(seven_cards.rank);
             rank_r.append(seven_cards.rank)
 
         max_obj = max(rank_r)
@@ -857,4 +864,4 @@ def win(hands_arr=[], board=[], dead=[]):
             count[index] += 1
         print(count)
 
-win([['AH','AC'],['QH','QS']],['TS','4H','7C','9D','KD'])
+win([['QC','9S'],['KS','JD']],['JS','5S','4S','2D','8S'])
